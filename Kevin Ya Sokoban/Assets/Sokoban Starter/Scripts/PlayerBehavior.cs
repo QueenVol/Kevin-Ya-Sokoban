@@ -7,11 +7,15 @@ public class PlayerBehavior : MonoBehaviour
 {
     private GridObject gridObject;
     private int gridX;
+    private Vector2Int playerPosition;
+    public WallBehavior wallBehavior;
 
     // Start is called before the first frame update
     void Start()
     {
         gridObject = GetComponent<GridObject>();
+        playerPosition = gridObject.gridPosition;
+        wallBehavior = FindObjectOfType<WallBehavior>();
     }
 
     // Update is called once per frame
@@ -19,20 +23,57 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            gridObject.gridPosition.y--;
+            playerPosition.y--;
+            if (playerPosition == wallBehavior.wallPosition)
+            {
+                playerPosition = gridObject.gridPosition;
+            }
+            else
+            {
+                gridObject.gridPosition.y--;
+                playerPosition = gridObject.gridPosition;
+            }
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            gridObject.gridPosition.x--;
+            playerPosition.x--;
+            if (playerPosition == wallBehavior.wallPosition)
+            {
+                playerPosition = gridObject.gridPosition;
+            }
+            else
+            {
+                gridObject.gridPosition.x--;
+                playerPosition = gridObject.gridPosition;
+            }
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            gridObject.gridPosition.y++;
+            playerPosition.y++;
+            if (playerPosition == wallBehavior.wallPosition)
+            {
+                playerPosition = gridObject.gridPosition;
+            }
+            else
+            {
+                gridObject.gridPosition.y++;
+                playerPosition = gridObject.gridPosition;
+            }
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            gridObject.gridPosition.x++;
+            playerPosition.x++;
+            if (playerPosition == wallBehavior.wallPosition)
+            {
+                playerPosition = gridObject.gridPosition;
+            }
+            else
+            {
+                gridObject.gridPosition.x++;
+                playerPosition = gridObject.gridPosition;
+            }
         }
+
         if (gridObject.gridPosition.x < 1)
         {
             gridObject.gridPosition.x = 1;
