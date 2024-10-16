@@ -11,11 +11,12 @@ public class WallBehavior : MonoBehaviour
     void Start()
     {
         gridObject = GetComponent<GridObject>();
+        wallPosition = gridObject.gridPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        wallPosition = gridObject.gridPosition;
+        
     }
 }

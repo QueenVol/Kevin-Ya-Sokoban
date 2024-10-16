@@ -9,6 +9,7 @@ public class PlayerBehavior : MonoBehaviour
     private int gridX;
     private Vector2Int playerPosition;
     public WallBehavior wallBehavior;
+    public SmoothBehavior smoothBehavior;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class PlayerBehavior : MonoBehaviour
         gridObject = GetComponent<GridObject>();
         playerPosition = gridObject.gridPosition;
         wallBehavior = FindObjectOfType<WallBehavior>();
+        smoothBehavior = FindObjectOfType<SmoothBehavior>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,20 @@ public class PlayerBehavior : MonoBehaviour
             if (playerPosition == wallBehavior.wallPosition)
             {
                 playerPosition = gridObject.gridPosition;
+            }
+            else if (playerPosition == smoothBehavior.smoothPosition)
+            {
+                smoothBehavior.toUp = true;
+                if (smoothBehavior.canMove)
+                {
+                    gridObject.gridPosition.y--;
+                    playerPosition = gridObject.gridPosition;
+                    smoothBehavior.canMove = false;
+                }
+                else
+                {
+                    playerPosition = gridObject.gridPosition;
+                }
             }
             else
             {
@@ -41,6 +57,20 @@ public class PlayerBehavior : MonoBehaviour
             {
                 playerPosition = gridObject.gridPosition;
             }
+            else if (playerPosition == smoothBehavior.smoothPosition)
+            {
+                smoothBehavior.toLeft = true;
+                if (smoothBehavior.canMove)
+                {
+                    gridObject.gridPosition.x--;
+                    playerPosition = gridObject.gridPosition;
+                    smoothBehavior.canMove = false;
+                }
+                else
+                {
+                    playerPosition = gridObject.gridPosition;
+                }
+            }
             else
             {
                 gridObject.gridPosition.x--;
@@ -54,6 +84,20 @@ public class PlayerBehavior : MonoBehaviour
             {
                 playerPosition = gridObject.gridPosition;
             }
+            else if (playerPosition == smoothBehavior.smoothPosition)
+            {
+                smoothBehavior.toDown = true;
+                if (smoothBehavior.canMove)
+                {
+                    gridObject.gridPosition.y++;
+                    playerPosition = gridObject.gridPosition;
+                    smoothBehavior.canMove = false;
+                }
+                else
+                {
+                    playerPosition = gridObject.gridPosition;
+                }
+            }
             else
             {
                 gridObject.gridPosition.y++;
@@ -66,6 +110,20 @@ public class PlayerBehavior : MonoBehaviour
             if (playerPosition == wallBehavior.wallPosition)
             {
                 playerPosition = gridObject.gridPosition;
+            }
+            else if (playerPosition == smoothBehavior.smoothPosition)
+            {
+                smoothBehavior.toRight = true;
+                if (smoothBehavior.canMove)
+                {
+                    gridObject.gridPosition.x++;
+                    playerPosition = gridObject.gridPosition;
+                    smoothBehavior.canMove = false;
+                }
+                else
+                {
+                    playerPosition = gridObject.gridPosition;
+                }
             }
             else
             {
