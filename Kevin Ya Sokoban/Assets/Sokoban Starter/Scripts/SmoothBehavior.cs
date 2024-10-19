@@ -29,7 +29,7 @@ public class SmoothBehavior : MonoBehaviour
         if (toUp)
         {
             smoothPosition.y--;
-            if (smoothPosition == wallBehavior.wallPosition)
+            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.y < 1)
             {
                 canMove = false;
                 smoothPosition = gridObject.gridPosition;
@@ -45,7 +45,7 @@ public class SmoothBehavior : MonoBehaviour
         if (toLeft)
         {
             smoothPosition.x--;
-            if (smoothPosition == wallBehavior.wallPosition)
+            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.x < 1)
             {
                 canMove = false;
                 smoothPosition = gridObject.gridPosition;
@@ -61,7 +61,7 @@ public class SmoothBehavior : MonoBehaviour
         if (toDown)
         {
             smoothPosition.y++;
-            if (smoothPosition == wallBehavior.wallPosition)
+            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.y > GridMaker.reference.dimensions.y)
             {
                 canMove = false;
                 smoothPosition = gridObject.gridPosition;
@@ -77,7 +77,7 @@ public class SmoothBehavior : MonoBehaviour
         if (toRight)
         {
             smoothPosition.x++;
-            if (smoothPosition == wallBehavior.wallPosition)
+            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.x > GridMaker.reference.dimensions.x)
             {
                 canMove = false;
                 smoothPosition = gridObject.gridPosition;

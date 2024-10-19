@@ -93,18 +93,22 @@ public class PlayerBehavior : MonoBehaviour
         if (gridObject.gridPosition.x < 1)
         {
             gridObject.gridPosition.x = 1;
+            playerPosition = gridObject.gridPosition;
         }
         if (gridObject.gridPosition.x > GridMaker.reference.dimensions.x)
         {
             gridObject.gridPosition.x = gridObject.gridPosition.x - 1;
+            playerPosition = gridObject.gridPosition;
         }
         if (gridObject.gridPosition.y < 1)
         {
             gridObject.gridPosition.y = 1;
+            playerPosition = gridObject.gridPosition;
         }
         if (gridObject.gridPosition.y > GridMaker.reference.dimensions.y)
         {
             gridObject.gridPosition.y = gridObject.gridPosition.y - 1;
+            playerPosition = gridObject.gridPosition;
         }
 
         if (smoothBehavior.canMove)
