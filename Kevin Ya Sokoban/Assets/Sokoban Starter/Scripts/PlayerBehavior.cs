@@ -7,7 +7,8 @@ public class PlayerBehavior : MonoBehaviour
 {
     private GridObject gridObject;
     private int gridX;
-    private Vector2Int playerPosition;
+    public Vector2Int playerPosition;
+    public Vector2Int thePosition;
     public WallBehavior wallBehavior;
     public SmoothBehavior smoothBehavior;
 
@@ -23,6 +24,7 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        thePosition = gridObject.gridPosition;
         if (Input.GetKeyDown(KeyCode.W))
         {
             playerPosition.y--;
@@ -33,21 +35,10 @@ public class PlayerBehavior : MonoBehaviour
             else if (playerPosition == smoothBehavior.smoothPosition)
             {
                 smoothBehavior.toUp = true;
-                if (smoothBehavior.canMove)
-                {
-                    gridObject.gridPosition.y--;
-                    playerPosition = gridObject.gridPosition;
-                    smoothBehavior.canMove = false;
-                }
-                else
-                {
-                    playerPosition = gridObject.gridPosition;
-                }
             }
             else
             {
-                gridObject.gridPosition.y--;
-                playerPosition = gridObject.gridPosition;
+                gridObject.gridPosition = playerPosition;
             }
         }
         if (Input.GetKeyDown(KeyCode.A))
@@ -60,21 +51,10 @@ public class PlayerBehavior : MonoBehaviour
             else if (playerPosition == smoothBehavior.smoothPosition)
             {
                 smoothBehavior.toLeft = true;
-                if (smoothBehavior.canMove)
-                {
-                    gridObject.gridPosition.x--;
-                    playerPosition = gridObject.gridPosition;
-                    smoothBehavior.canMove = false;
-                }
-                else
-                {
-                    playerPosition = gridObject.gridPosition;
-                }
             }
             else
             {
-                gridObject.gridPosition.x--;
-                playerPosition = gridObject.gridPosition;
+                gridObject.gridPosition = playerPosition;
             }
         }
         if (Input.GetKeyDown(KeyCode.S))
@@ -87,21 +67,10 @@ public class PlayerBehavior : MonoBehaviour
             else if (playerPosition == smoothBehavior.smoothPosition)
             {
                 smoothBehavior.toDown = true;
-                if (smoothBehavior.canMove)
-                {
-                    gridObject.gridPosition.y++;
-                    playerPosition = gridObject.gridPosition;
-                    smoothBehavior.canMove = false;
-                }
-                else
-                {
-                    playerPosition = gridObject.gridPosition;
-                }
             }
             else
             {
-                gridObject.gridPosition.y++;
-                playerPosition = gridObject.gridPosition;
+                gridObject.gridPosition = playerPosition;
             }
         }
         if (Input.GetKeyDown(KeyCode.D))
@@ -114,21 +83,10 @@ public class PlayerBehavior : MonoBehaviour
             else if (playerPosition == smoothBehavior.smoothPosition)
             {
                 smoothBehavior.toRight = true;
-                if (smoothBehavior.canMove)
-                {
-                    gridObject.gridPosition.x++;
-                    playerPosition = gridObject.gridPosition;
-                    smoothBehavior.canMove = false;
-                }
-                else
-                {
-                    playerPosition = gridObject.gridPosition;
-                }
             }
             else
             {
-                gridObject.gridPosition.x++;
-                playerPosition = gridObject.gridPosition;
+                gridObject.gridPosition = playerPosition;
             }
         }
 
@@ -147,6 +105,12 @@ public class PlayerBehavior : MonoBehaviour
         if (gridObject.gridPosition.y > GridMaker.reference.dimensions.y)
         {
             gridObject.gridPosition.y = gridObject.gridPosition.y - 1;
+        }
+
+        if (smoothBehavior.canMove)
+        {
+            gridObject.gridPosition = playerPosition;
+            smoothBehavior.canMove = false;
         }
     }
 }

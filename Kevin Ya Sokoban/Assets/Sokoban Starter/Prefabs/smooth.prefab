@@ -133,3 +133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278c534c4d7e6b64ebde281dcae29434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothPosition: {x: 0, y: 0}
+  thePosition: {x: 0, y: 0}
+  toRight: 0
+  toLeft: 0
+  toUp: 0
+  toDown: 0
+  canMove: 1
+  wallBehavior: {fileID: 0}

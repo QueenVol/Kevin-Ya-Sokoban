@@ -10,8 +10,9 @@ public class SmoothBehavior : MonoBehaviour
     public bool toLeft = false;
     public bool toUp = false;
     public bool toDown = false;
-    public bool canMove = false;
+    public bool canMove;
     public WallBehavior wallBehavior;
+    public PlayerBehavior playerBehavior;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class SmoothBehavior : MonoBehaviour
         gridObject = GetComponent<GridObject>();
         smoothPosition = gridObject.gridPosition;
         wallBehavior = FindObjectOfType<WallBehavior>();
+        playerBehavior = FindObjectOfType<PlayerBehavior>();
     }
 
     // Update is called once per frame
@@ -29,68 +31,64 @@ public class SmoothBehavior : MonoBehaviour
             smoothPosition.y--;
             if (smoothPosition == wallBehavior.wallPosition)
             {
-                smoothPosition = gridObject.gridPosition;
                 canMove = false;
-                toUp = false;
+                smoothPosition = gridObject.gridPosition;
+                playerBehavior.playerPosition = playerBehavior.thePosition;
             }
             else
             {
-                gridObject.gridPosition.y--;
-                smoothPosition = gridObject.gridPosition;
+                gridObject.gridPosition = smoothPosition;
                 canMove = true;
-                toUp = false;
             }
+            toUp = false;
         }
         if (toLeft)
         {
             smoothPosition.x--;
             if (smoothPosition == wallBehavior.wallPosition)
             {
-                smoothPosition = gridObject.gridPosition;
                 canMove = false;
-                toLeft = false;
+                smoothPosition = gridObject.gridPosition;
+                playerBehavior.playerPosition = playerBehavior.thePosition;
             }
             else
             {
-                gridObject.gridPosition.x--;
-                smoothPosition = gridObject.gridPosition;
                 canMove = true;
-                toLeft = false;
+                gridObject.gridPosition = smoothPosition;
             }
+            toLeft = false;
         }
         if (toDown)
         {
             smoothPosition.y++;
             if (smoothPosition == wallBehavior.wallPosition)
             {
-                smoothPosition = gridObject.gridPosition;
                 canMove = false;
-                toDown = false;
+                smoothPosition = gridObject.gridPosition;
+                playerBehavior.playerPosition = playerBehavior.thePosition;
             }
             else
             {
-                gridObject.gridPosition.y++;
-                smoothPosition = gridObject.gridPosition;
                 canMove = true;
-                toDown = false;
+                gridObject.gridPosition = smoothPosition;
             }
+            toDown = false;
         }
         if (toRight)
         {
             smoothPosition.x++;
             if (smoothPosition == wallBehavior.wallPosition)
             {
-                smoothPosition = gridObject.gridPosition;
                 canMove = false;
-                toRight = false;
+                smoothPosition = gridObject.gridPosition;
+                playerBehavior.playerPosition = playerBehavior.thePosition;
             }
             else
             {
-                gridObject.gridPosition.x++;
-                smoothPosition = gridObject.gridPosition;
                 canMove = true;
-                toRight = false;
+                gridObject.gridPosition = smoothPosition;
             }
+            toRight = false;
         }
     }
 }
