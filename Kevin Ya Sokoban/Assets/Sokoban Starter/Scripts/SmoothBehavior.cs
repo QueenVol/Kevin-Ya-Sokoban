@@ -13,6 +13,7 @@ public class SmoothBehavior : MonoBehaviour
     public bool canMove;
     public WallBehavior wallBehavior;
     public PlayerBehavior playerBehavior;
+    public ClingyBehavior clingyBehavior;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class SmoothBehavior : MonoBehaviour
         smoothPosition = gridObject.gridPosition;
         wallBehavior = FindObjectOfType<WallBehavior>();
         playerBehavior = FindObjectOfType<PlayerBehavior>();
+        clingyBehavior = FindObjectOfType<ClingyBehavior>();
     }
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class SmoothBehavior : MonoBehaviour
         if (toUp)
         {
             smoothPosition.y--;
-            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.y < 1)
+            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.y < 1 || smoothPosition == clingyBehavior.clingyPosition)
             {
                 canMove = false;
                 smoothPosition = gridObject.gridPosition;
@@ -45,7 +47,7 @@ public class SmoothBehavior : MonoBehaviour
         if (toLeft)
         {
             smoothPosition.x--;
-            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.x < 1)
+            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.x < 1 || smoothPosition == clingyBehavior.clingyPosition)
             {
                 canMove = false;
                 smoothPosition = gridObject.gridPosition;
@@ -61,7 +63,7 @@ public class SmoothBehavior : MonoBehaviour
         if (toDown)
         {
             smoothPosition.y++;
-            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.y > GridMaker.reference.dimensions.y)
+            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.y > GridMaker.reference.dimensions.y || smoothPosition == clingyBehavior.clingyPosition)
             {
                 canMove = false;
                 smoothPosition = gridObject.gridPosition;
@@ -77,7 +79,7 @@ public class SmoothBehavior : MonoBehaviour
         if (toRight)
         {
             smoothPosition.x++;
-            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.x > GridMaker.reference.dimensions.x)
+            if (smoothPosition == wallBehavior.wallPosition || smoothPosition.x > GridMaker.reference.dimensions.x || smoothPosition == clingyBehavior.clingyPosition)
             {
                 canMove = false;
                 smoothPosition = gridObject.gridPosition;
