@@ -17,6 +17,8 @@ public class ClingyBehavior : MonoBehaviour
     public PlayerBehavior playerBehavior;
     public bool withPlayer;
     public bool canMove;
+    public Vector2Int thePosition;
+    public StickyBehavior stickyBehavior;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +26,14 @@ public class ClingyBehavior : MonoBehaviour
         gridObject = GetComponent<GridObject>();
         clingyPosition = gridObject.gridPosition;
         playerBehavior = FindObjectOfType<PlayerBehavior>();
+        stickyBehavior = FindObjectOfType<StickyBehavior>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        thePosition = gridObject.gridPosition;
+
         up = clingyPosition;
         up.y = clingyPosition.y - 1;
         left = clingyPosition;
@@ -39,6 +44,10 @@ public class ClingyBehavior : MonoBehaviour
         right.x = clingyPosition.x + 1;
         if (toUp)
         {
+            if (stickyBehavior.moveWithClingy)
+            {
+                stickyBehavior.stickyPosition.y--;
+            }
             gridObject.gridPosition.y--;
             if (!canMove)
             {
@@ -50,6 +59,10 @@ public class ClingyBehavior : MonoBehaviour
         }
         if (toLeft)
         {
+            if (stickyBehavior.moveWithClingy)
+            {
+                stickyBehavior.stickyPosition.x--;
+            }
             gridObject.gridPosition.x--;
             if (!canMove)
             {
@@ -61,6 +74,10 @@ public class ClingyBehavior : MonoBehaviour
         }
         if (toDown)
         {
+            if (stickyBehavior.moveWithClingy)
+            {
+                stickyBehavior.stickyPosition.y++;
+            }
             gridObject.gridPosition.y++;
             if (!canMove)
             {
@@ -72,6 +89,10 @@ public class ClingyBehavior : MonoBehaviour
         }
         if (toRight)
         {
+            if (stickyBehavior.moveWithClingy)
+            {
+                stickyBehavior.stickyPosition.x++;
+            }
             gridObject.gridPosition.x++;
             if (!canMove)
             {
