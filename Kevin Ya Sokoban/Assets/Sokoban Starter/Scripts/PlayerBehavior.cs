@@ -12,6 +12,7 @@ public class PlayerBehavior : MonoBehaviour
     public WallBehavior wallBehavior;
     public SmoothBehavior smoothBehavior;
     public StickyBehavior stickyBehavior;
+    public ClingyBehavior clingyBehavior;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PlayerBehavior : MonoBehaviour
         wallBehavior = FindObjectOfType<WallBehavior>();
         smoothBehavior = FindObjectOfType<SmoothBehavior>();
         stickyBehavior = FindObjectOfType<StickyBehavior>();
+        clingyBehavior = FindObjectOfType<ClingyBehavior>();
     }
 
     // Update is called once per frame
@@ -38,14 +40,22 @@ public class PlayerBehavior : MonoBehaviour
                     stickyBehavior.stickyPosition.y--;
                 }
             }
-            if (playerPosition == wallBehavior.wallPosition)
+            if (playerPosition == wallBehavior.wallPosition || playerPosition == clingyBehavior.clingyPosition)
             {
                 playerPosition = gridObject.gridPosition;
-                stickyBehavior.stickyPosition.y++;
+                if (stickyBehavior.moveWithPlayer)
+                {
+                    stickyBehavior.stickyPosition.y++;
+                }
             }
             else if (playerPosition == smoothBehavior.smoothPosition)
             {
                 smoothBehavior.toUp = true;
+            }
+            else if (thePosition == clingyBehavior.up)
+            {
+                clingyBehavior.toUp = true;
+                gridObject.gridPosition = playerPosition;
             }
             else
             {
@@ -58,8 +68,7 @@ public class PlayerBehavior : MonoBehaviour
                     gridObject.gridPosition = playerPosition;
                 }
             }
-            Debug.Log(playerPosition);
-            Debug.Log(thePosition);
+            Debug.Log(clingyBehavior.toUp);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -71,14 +80,22 @@ public class PlayerBehavior : MonoBehaviour
                     stickyBehavior.stickyPosition.x--;
                 }
             }
-            if (playerPosition == wallBehavior.wallPosition)
+            if (playerPosition == wallBehavior.wallPosition || playerPosition == clingyBehavior.clingyPosition)
             {
                 playerPosition = gridObject.gridPosition;
-                stickyBehavior.stickyPosition.x++;
+                if (stickyBehavior.moveWithPlayer)
+                {
+                    stickyBehavior.stickyPosition.x++;
+                }
             }
             else if (playerPosition == smoothBehavior.smoothPosition)
             {
                 smoothBehavior.toLeft = true;
+            }
+            else if (thePosition == clingyBehavior.left)
+            {
+                clingyBehavior.toLeft = true;
+                gridObject.gridPosition = playerPosition;
             }
             else
             {
@@ -102,14 +119,22 @@ public class PlayerBehavior : MonoBehaviour
                     stickyBehavior.stickyPosition.y++;
                 }
             }
-            if (playerPosition == wallBehavior.wallPosition)
+            if (playerPosition == wallBehavior.wallPosition || playerPosition == clingyBehavior.clingyPosition)
             {
                 playerPosition = gridObject.gridPosition;
-                stickyBehavior.stickyPosition.y--;
+                if (stickyBehavior.moveWithPlayer)
+                {
+                    stickyBehavior.stickyPosition.y--;
+                }
             }
             else if (playerPosition == smoothBehavior.smoothPosition)
             {
                 smoothBehavior.toDown = true;
+            }
+            else if (thePosition == clingyBehavior.down)
+            {
+                clingyBehavior.toDown = true;
+                gridObject.gridPosition = playerPosition;
             }
             else
             {
@@ -133,14 +158,22 @@ public class PlayerBehavior : MonoBehaviour
                     stickyBehavior.stickyPosition.x++;
                 }
             }
-            if (playerPosition == wallBehavior.wallPosition)
+            if (playerPosition == wallBehavior.wallPosition || playerPosition == clingyBehavior.clingyPosition)
             {
                 playerPosition = gridObject.gridPosition;
-                stickyBehavior.stickyPosition.x--;
+                if (stickyBehavior.moveWithPlayer)
+                {
+                    stickyBehavior.stickyPosition.x--;
+                }
             }
             else if (playerPosition == smoothBehavior.smoothPosition)
             {
                 smoothBehavior.toRight = true;
+            }
+            else if (thePosition == clingyBehavior.right)
+            {
+                clingyBehavior.toRight = true;
+                gridObject.gridPosition = playerPosition;
             }
             else
             {
