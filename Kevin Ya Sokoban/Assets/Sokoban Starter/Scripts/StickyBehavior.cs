@@ -13,6 +13,8 @@ public class StickyBehavior : MonoBehaviour
     public PlayerBehavior playerBehavior;
     public bool moveWithPlayer;
     public WallBehavior wallBehavior;
+    public bool moveWithSmooth;
+    public SmoothBehavior smoothBehavior;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class StickyBehavior : MonoBehaviour
         stickyPosition = gridObject.gridPosition;
         playerBehavior = FindObjectOfType<PlayerBehavior>();
         wallBehavior = FindObjectOfType<WallBehavior>();
+        smoothBehavior = FindObjectOfType<SmoothBehavior>();
     }
 
     // Update is called once per frame
@@ -43,6 +46,15 @@ public class StickyBehavior : MonoBehaviour
         else
         {
             moveWithPlayer = false;
+        }
+
+        if (up == smoothBehavior.thePosition || left == smoothBehavior.thePosition || down == smoothBehavior.thePosition || right == smoothBehavior.thePosition)
+        {
+            moveWithSmooth = true;
+        }
+        else
+        {
+            moveWithSmooth = false;
         }
 
         gridObject.gridPosition = stickyPosition;

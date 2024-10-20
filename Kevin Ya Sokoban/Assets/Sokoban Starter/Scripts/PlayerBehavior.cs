@@ -39,6 +39,10 @@ public class PlayerBehavior : MonoBehaviour
                 {
                     stickyBehavior.stickyPosition.y--;
                 }
+                else if (stickyBehavior.up == wallBehavior.wallPosition && playerPosition.x == stickyBehavior.stickyPosition.x)
+                {
+                    playerPosition = gridObject.gridPosition;
+                }
             }
             if (playerPosition == wallBehavior.wallPosition || playerPosition == clingyBehavior.clingyPosition)
             {
@@ -79,6 +83,10 @@ public class PlayerBehavior : MonoBehaviour
                 {
                     stickyBehavior.stickyPosition.x--;
                 }
+                else if (stickyBehavior.left == wallBehavior.wallPosition && playerPosition.y == stickyBehavior.stickyPosition.y)
+                {
+                    playerPosition = gridObject.gridPosition;
+                }
             }
             if (playerPosition == wallBehavior.wallPosition || playerPosition == clingyBehavior.clingyPosition)
             {
@@ -117,6 +125,10 @@ public class PlayerBehavior : MonoBehaviour
                 if (stickyBehavior.down != wallBehavior.wallPosition)
                 {
                     stickyBehavior.stickyPosition.y++;
+                }
+                else if (stickyBehavior.down == wallBehavior.wallPosition && playerPosition.x == stickyBehavior.stickyPosition.x)
+                {
+                    playerPosition = gridObject.gridPosition;
                 }
             }
             if (playerPosition == wallBehavior.wallPosition || playerPosition == clingyBehavior.clingyPosition)
@@ -157,6 +169,10 @@ public class PlayerBehavior : MonoBehaviour
                 {
                     stickyBehavior.stickyPosition.x++;
                 }
+                else if (stickyBehavior.right == wallBehavior.wallPosition && playerPosition.y == stickyBehavior.stickyPosition.y)
+                {
+                    playerPosition = gridObject.gridPosition;
+                }
             }
             if (playerPosition == wallBehavior.wallPosition || playerPosition == clingyBehavior.clingyPosition)
             {
@@ -187,7 +203,7 @@ public class PlayerBehavior : MonoBehaviour
                 }
             }
         }
-        Debug.Log(clingyBehavior.withPlayer);
+
         if (gridObject.gridPosition.x < 1)
         {
             gridObject.gridPosition.x = 1;

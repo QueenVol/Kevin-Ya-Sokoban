@@ -14,6 +14,8 @@ public class SmoothBehavior : MonoBehaviour
     public WallBehavior wallBehavior;
     public PlayerBehavior playerBehavior;
     public ClingyBehavior clingyBehavior;
+    public Vector2Int thePosition;
+    public StickyBehavior stickyBehavior;
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +25,13 @@ public class SmoothBehavior : MonoBehaviour
         wallBehavior = FindObjectOfType<WallBehavior>();
         playerBehavior = FindObjectOfType<PlayerBehavior>();
         clingyBehavior = FindObjectOfType<ClingyBehavior>();
+        stickyBehavior = FindObjectOfType<StickyBehavior>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        thePosition = gridObject.gridPosition;
         if (toUp)
         {
             smoothPosition.y--;
@@ -41,6 +45,10 @@ public class SmoothBehavior : MonoBehaviour
             {
                 gridObject.gridPosition = smoothPosition;
                 canMove = true;
+                if (stickyBehavior.moveWithSmooth)
+                {
+                    stickyBehavior.stickyPosition.y--;
+                }
             }
             toUp = false;
         }
@@ -57,6 +65,10 @@ public class SmoothBehavior : MonoBehaviour
             {
                 canMove = true;
                 gridObject.gridPosition = smoothPosition;
+                if (stickyBehavior.moveWithSmooth)
+                {
+                    stickyBehavior.stickyPosition.x--;
+                }
             }
             toLeft = false;
         }
@@ -73,6 +85,10 @@ public class SmoothBehavior : MonoBehaviour
             {
                 canMove = true;
                 gridObject.gridPosition = smoothPosition;
+                if (stickyBehavior.moveWithSmooth)
+                {
+                    stickyBehavior.stickyPosition.y++;
+                }
             }
             toDown = false;
         }
@@ -89,6 +105,10 @@ public class SmoothBehavior : MonoBehaviour
             {
                 canMove = true;
                 gridObject.gridPosition = smoothPosition;
+                if (stickyBehavior.moveWithSmooth)
+                {
+                    stickyBehavior.stickyPosition.x++;
+                }
             }
             toRight = false;
         }
