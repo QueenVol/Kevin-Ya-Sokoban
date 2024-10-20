@@ -26,14 +26,17 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(playerPosition);
+        //Debug.Log(playerPosition);
         thePosition = gridObject.gridPosition;
         if (Input.GetKeyDown(KeyCode.W))
         {
             playerPosition.y--;
             if (stickyBehavior.moveWithPlayer)
             {
-                stickyBehavior.stickyPosition.y--;
+                if (stickyBehavior.up != wallBehavior.wallPosition)
+                {
+                    stickyBehavior.stickyPosition.y--;
+                }
             }
             if (playerPosition == wallBehavior.wallPosition)
             {
@@ -55,13 +58,18 @@ public class PlayerBehavior : MonoBehaviour
                     gridObject.gridPosition = playerPosition;
                 }
             }
+            Debug.Log(playerPosition);
+            Debug.Log(thePosition);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
             playerPosition.x--;
             if (stickyBehavior.moveWithPlayer)
             {
-                stickyBehavior.stickyPosition.x--;
+                if (stickyBehavior.left != wallBehavior.wallPosition)
+                {
+                    stickyBehavior.stickyPosition.x--;
+                }
             }
             if (playerPosition == wallBehavior.wallPosition)
             {
@@ -89,7 +97,10 @@ public class PlayerBehavior : MonoBehaviour
             playerPosition.y++;
             if (stickyBehavior.moveWithPlayer)
             {
-                stickyBehavior.stickyPosition.y++;
+                if (stickyBehavior.down != wallBehavior.wallPosition)
+                {
+                    stickyBehavior.stickyPosition.y++;
+                }
             }
             if (playerPosition == wallBehavior.wallPosition)
             {
@@ -117,7 +128,10 @@ public class PlayerBehavior : MonoBehaviour
             playerPosition.x++;
             if (stickyBehavior.moveWithPlayer)
             {
-                stickyBehavior.stickyPosition.x++;
+                if (stickyBehavior.right != wallBehavior.wallPosition)
+                {
+                    stickyBehavior.stickyPosition.x++;
+                }
             }
             if (playerPosition == wallBehavior.wallPosition)
             {
@@ -145,21 +159,37 @@ public class PlayerBehavior : MonoBehaviour
         {
             gridObject.gridPosition.x = 1;
             playerPosition = gridObject.gridPosition;
+            if (stickyBehavior.moveWithPlayer)
+            {
+                stickyBehavior.stickyPosition.x++;
+            }
         }
         if (gridObject.gridPosition.x > GridMaker.reference.dimensions.x)
         {
             gridObject.gridPosition.x = gridObject.gridPosition.x - 1;
             playerPosition = gridObject.gridPosition;
+            if (stickyBehavior.moveWithPlayer)
+            {
+                stickyBehavior.stickyPosition.x--;
+            }
         }
         if (gridObject.gridPosition.y < 1)
         {
             gridObject.gridPosition.y = 1;
             playerPosition = gridObject.gridPosition;
+            if (stickyBehavior.moveWithPlayer)
+            {
+                stickyBehavior.stickyPosition.y++;
+            }
         }
         if (gridObject.gridPosition.y > GridMaker.reference.dimensions.y)
         {
             gridObject.gridPosition.y = gridObject.gridPosition.y - 1;
             playerPosition = gridObject.gridPosition;
+            if (stickyBehavior.moveWithPlayer)
+            {
+                stickyBehavior.stickyPosition.y--;
+            }
         }
 
         if (smoothBehavior.canMove)

@@ -6,12 +6,13 @@ public class StickyBehavior : MonoBehaviour
 {
     private GridObject gridObject;
     public Vector2Int stickyPosition;
-    private Vector2Int up;
-    private Vector2Int left;
-    private Vector2Int down;
-    private Vector2Int right;
+    public Vector2Int up;
+    public Vector2Int left;
+    public Vector2Int down;
+    public Vector2Int right;
     public PlayerBehavior playerBehavior;
     public bool moveWithPlayer;
+    public WallBehavior wallBehavior;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class StickyBehavior : MonoBehaviour
         gridObject = GetComponent<GridObject>();
         stickyPosition = gridObject.gridPosition;
         playerBehavior = FindObjectOfType<PlayerBehavior>();
+        wallBehavior = FindObjectOfType<WallBehavior>();
     }
 
     // Update is called once per frame
