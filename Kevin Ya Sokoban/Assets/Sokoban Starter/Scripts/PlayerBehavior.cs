@@ -68,7 +68,7 @@ public class PlayerBehavior : MonoBehaviour
                     gridObject.gridPosition = playerPosition;
                 }
             }
-            Debug.Log(clingyBehavior.toUp);
+            //Debug.Log(clingyBehavior.toUp);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -187,7 +187,7 @@ public class PlayerBehavior : MonoBehaviour
                 }
             }
         }
-
+        Debug.Log(clingyBehavior.withPlayer);
         if (gridObject.gridPosition.x < 1)
         {
             gridObject.gridPosition.x = 1;
@@ -195,6 +195,10 @@ public class PlayerBehavior : MonoBehaviour
             if (stickyBehavior.moveWithPlayer)
             {
                 stickyBehavior.stickyPosition.x++;
+            }
+            if (clingyBehavior.withPlayer)
+            {
+                clingyBehavior.canMove = false;
             }
         }
         if (gridObject.gridPosition.x > GridMaker.reference.dimensions.x)
@@ -205,6 +209,10 @@ public class PlayerBehavior : MonoBehaviour
             {
                 stickyBehavior.stickyPosition.x--;
             }
+            if (clingyBehavior.withPlayer)
+            {
+                clingyBehavior.canMove = false;
+            }
         }
         if (gridObject.gridPosition.y < 1)
         {
@@ -214,6 +222,10 @@ public class PlayerBehavior : MonoBehaviour
             {
                 stickyBehavior.stickyPosition.y++;
             }
+            if (clingyBehavior.withPlayer)
+            {
+                clingyBehavior.canMove = false;
+            }
         }
         if (gridObject.gridPosition.y > GridMaker.reference.dimensions.y)
         {
@@ -222,6 +234,10 @@ public class PlayerBehavior : MonoBehaviour
             if (stickyBehavior.moveWithPlayer)
             {
                 stickyBehavior.stickyPosition.y--;
+            }
+            if (clingyBehavior.withPlayer)
+            {
+                clingyBehavior.canMove = false;
             }
         }
 

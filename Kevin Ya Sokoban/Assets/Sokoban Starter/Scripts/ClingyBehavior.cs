@@ -15,6 +15,8 @@ public class ClingyBehavior : MonoBehaviour
     public Vector2Int down;
     public Vector2Int right;
     public PlayerBehavior playerBehavior;
+    public bool withPlayer;
+    public bool canMove;
 
     // Start is called before the first frame update
     void Start()
@@ -38,26 +40,55 @@ public class ClingyBehavior : MonoBehaviour
         if (toUp)
         {
             gridObject.gridPosition.y--;
+            if (!canMove)
+            {
+                gridObject.gridPosition.y++;
+                canMove = true;
+            }
             clingyPosition = gridObject.gridPosition;
             toUp = false;
         }
         if (toLeft)
         {
             gridObject.gridPosition.x--;
+            if (!canMove)
+            {
+                gridObject.gridPosition.x++;
+                canMove = true;
+            }
             clingyPosition = gridObject.gridPosition;
             toLeft = false;
         }
         if (toDown)
         {
             gridObject.gridPosition.y++;
+            if (!canMove)
+            {
+                gridObject.gridPosition.y--;
+                canMove = true;
+            }
             clingyPosition = gridObject.gridPosition;
             toDown = false;
         }
         if (toRight)
         {
             gridObject.gridPosition.x++;
+            if (!canMove)
+            {
+                gridObject.gridPosition.x--;
+                canMove = true;
+            }
             clingyPosition = gridObject.gridPosition;
             toRight = false;
+        }
+
+        if (playerBehavior.thePosition == up || playerBehavior.thePosition == down || playerBehavior.thePosition == left || playerBehavior.thePosition == right)
+        {
+            withPlayer = true;
+        }
+        else
+        {
+            withPlayer = false;
         }
     }
 }
