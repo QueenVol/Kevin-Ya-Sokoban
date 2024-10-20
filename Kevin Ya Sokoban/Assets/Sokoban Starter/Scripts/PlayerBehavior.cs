@@ -37,7 +37,14 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (stickyBehavior.up != wallBehavior.wallPosition)
                 {
-                    stickyBehavior.stickyPosition.y--;
+                    if (stickyBehavior.moveWithSmooth && stickyBehavior.stickyPosition.x == smoothBehavior.smoothPosition.x && stickyBehavior.stickyPosition.y > smoothBehavior.smoothPosition.y)
+                    {
+                        smoothBehavior.toUp = true;
+                    }
+                    else
+                    {
+                        stickyBehavior.stickyPosition.y--;
+                    }
                 }
                 else if (stickyBehavior.up == wallBehavior.wallPosition && playerPosition.x == stickyBehavior.stickyPosition.x)
                 {
@@ -81,7 +88,14 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (stickyBehavior.left != wallBehavior.wallPosition)
                 {
-                    stickyBehavior.stickyPosition.x--;
+                    if (stickyBehavior.moveWithSmooth && stickyBehavior.stickyPosition.y == smoothBehavior.smoothPosition.y && stickyBehavior.stickyPosition.x > smoothBehavior.smoothPosition.x)
+                    {
+                        smoothBehavior.toLeft = true;
+                    }
+                    else
+                    {
+                        stickyBehavior.stickyPosition.x--;
+                    }
                 }
                 else if (stickyBehavior.left == wallBehavior.wallPosition && playerPosition.y == stickyBehavior.stickyPosition.y)
                 {
@@ -124,7 +138,14 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (stickyBehavior.down != wallBehavior.wallPosition)
                 {
-                    stickyBehavior.stickyPosition.y++;
+                    if (stickyBehavior.moveWithSmooth && stickyBehavior.stickyPosition.x == smoothBehavior.smoothPosition.x && stickyBehavior.stickyPosition.y < smoothBehavior.smoothPosition.y)
+                    {
+                        smoothBehavior.toDown = true;
+                    }
+                    else
+                    {
+                        stickyBehavior.stickyPosition.y++;
+                    }
                 }
                 else if (stickyBehavior.down == wallBehavior.wallPosition && playerPosition.x == stickyBehavior.stickyPosition.x)
                 {
@@ -167,7 +188,14 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (stickyBehavior.right != wallBehavior.wallPosition)
                 {
-                    stickyBehavior.stickyPosition.x++;
+                    if (stickyBehavior.moveWithSmooth && stickyBehavior.stickyPosition.y == smoothBehavior.smoothPosition.y && stickyBehavior.stickyPosition.x < smoothBehavior.smoothPosition.x)
+                    {
+                        smoothBehavior.toRight = true;
+                    }
+                    else
+                    {
+                        stickyBehavior.stickyPosition.x++;
+                    }
                 }
                 else if (stickyBehavior.right == wallBehavior.wallPosition && playerPosition.y == stickyBehavior.stickyPosition.y)
                 {
