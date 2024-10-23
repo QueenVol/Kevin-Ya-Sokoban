@@ -41,11 +41,18 @@ public class PlayerBehavior : MonoBehaviour
                     {
                         smoothBehavior.toUp = true;
                     }
-                    else if (stickyBehavior.moveWithClingy && stickyBehavior.stickyPosition.x == clingyBehavior.clingyPosition.x && stickyBehavior.stickyPosition.y < clingyBehavior.clingyPosition.y)
+                    else if (stickyBehavior.moveWithClingy && stickyBehavior.stickyPosition.x == clingyBehavior.clingyPosition.x)
                     {
-                        if (stickyBehavior.stickyPosition.y != 1)
+                        if (stickyBehavior.stickyPosition.y < clingyBehavior.clingyPosition.y)
                         {
-                            clingyBehavior.toUp = true;
+                            if (stickyBehavior.stickyPosition.y != 1)
+                            {
+                                clingyBehavior.toUp = true;
+                            }
+                        }
+                        else if (stickyBehavior.stickyPosition.y > clingyBehavior.clingyPosition.y)
+                        {
+                            //stickyBehavior.stickyPosition.y;
                         }
                     }
                     else
@@ -99,11 +106,18 @@ public class PlayerBehavior : MonoBehaviour
                     {
                         smoothBehavior.toLeft = true;
                     }
-                    else if (stickyBehavior.moveWithClingy && stickyBehavior.stickyPosition.y == clingyBehavior.clingyPosition.y && stickyBehavior.stickyPosition.x < clingyBehavior.clingyPosition.x)
+                    else if (stickyBehavior.moveWithClingy && stickyBehavior.stickyPosition.y == clingyBehavior.clingyPosition.y)
                     {
-                        if (stickyBehavior.stickyPosition.x != 1)
+                        if (stickyBehavior.stickyPosition.x < clingyBehavior.clingyPosition.x)
                         {
-                            clingyBehavior.toLeft = true;
+                            if (stickyBehavior.stickyPosition.x != 1)
+                            {
+                                clingyBehavior.toUp = true;
+                            }
+                        }
+                        else if (stickyBehavior.stickyPosition.x > clingyBehavior.clingyPosition.x)
+                        {
+                            
                         }
                     }
                     else
@@ -156,11 +170,18 @@ public class PlayerBehavior : MonoBehaviour
                     {
                         smoothBehavior.toDown = true;
                     }
-                    else if (stickyBehavior.moveWithClingy && stickyBehavior.stickyPosition.x == clingyBehavior.clingyPosition.x && stickyBehavior.stickyPosition.y > clingyBehavior.clingyPosition.y)
+                    else if (stickyBehavior.moveWithClingy && stickyBehavior.stickyPosition.x == clingyBehavior.clingyPosition.x)
                     {
-                        if (stickyBehavior.stickyPosition.y != GridMaker.reference.dimensions.y)
+                        if (stickyBehavior.stickyPosition.y > clingyBehavior.clingyPosition.y)
                         {
-                            clingyBehavior.toDown = true;
+                            if (stickyBehavior.stickyPosition.y != GridMaker.reference.dimensions.y)
+                            {
+                                clingyBehavior.toUp = true;
+                            }
+                        }
+                        else if (stickyBehavior.stickyPosition.y < clingyBehavior.clingyPosition.y)
+                        {
+                            
                         }
                     }
                     else
@@ -213,11 +234,18 @@ public class PlayerBehavior : MonoBehaviour
                     {
                         smoothBehavior.toRight = true;
                     }
-                    else if (stickyBehavior.moveWithClingy && stickyBehavior.stickyPosition.y == clingyBehavior.clingyPosition.y && stickyBehavior.stickyPosition.x > clingyBehavior.clingyPosition.x)
+                    else if (stickyBehavior.moveWithClingy && stickyBehavior.stickyPosition.y == clingyBehavior.clingyPosition.y)
                     {
-                        if (stickyBehavior.stickyPosition.x != GridMaker.reference.dimensions.x)
+                        if (stickyBehavior.stickyPosition.x > clingyBehavior.clingyPosition.x)
                         {
-                            clingyBehavior.toRight = true;
+                            if (stickyBehavior.stickyPosition.x != GridMaker.reference.dimensions.x)
+                            {
+                                clingyBehavior.toUp = true;
+                            }
+                        }
+                        else if (stickyBehavior.stickyPosition.x < clingyBehavior.clingyPosition.x)
+                        {
+                            
                         }
                     }
                     else

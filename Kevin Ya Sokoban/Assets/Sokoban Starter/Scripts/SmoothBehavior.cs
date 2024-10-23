@@ -48,6 +48,10 @@ public class SmoothBehavior : MonoBehaviour
                 if (stickyBehavior.moveWithSmooth)
                 {
                     stickyBehavior.stickyPosition.y--;
+                    if (stickyBehavior.stickyPosition == clingyBehavior.clingyPosition)
+                    {
+                        stickyBehavior.stickyPosition.y++;
+                    }
                 }
             }
             toUp = false;
@@ -68,6 +72,10 @@ public class SmoothBehavior : MonoBehaviour
                 if (stickyBehavior.moveWithSmooth)
                 {
                     stickyBehavior.stickyPosition.x--;
+                    if (stickyBehavior.stickyPosition == clingyBehavior.clingyPosition)
+                    {
+                        stickyBehavior.stickyPosition.x++;
+                    }
                 }
             }
             toLeft = false;
@@ -88,6 +96,10 @@ public class SmoothBehavior : MonoBehaviour
                 if (stickyBehavior.moveWithSmooth)
                 {
                     stickyBehavior.stickyPosition.y++;
+                    if (stickyBehavior.stickyPosition == clingyBehavior.clingyPosition)
+                    {
+                        stickyBehavior.stickyPosition.y--;
+                    }
                 }
             }
             toDown = false;
@@ -108,6 +120,10 @@ public class SmoothBehavior : MonoBehaviour
                 if (stickyBehavior.moveWithSmooth)
                 {
                     stickyBehavior.stickyPosition.x++;
+                    if(stickyBehavior.stickyPosition == clingyBehavior.clingyPosition)
+                    {
+                        stickyBehavior.stickyPosition.x--;
+                    }
                 }
             }
             toRight = false;
